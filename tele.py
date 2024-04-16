@@ -26,13 +26,13 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_message = update.message.text
     response = chai(user_message)
-    await context.bot.send_message(chat_id=update.effective_chat.id, text="Sedang memproses pesanmu...")
+    # await context.bot.send_message(chat_id=update.effective_chat.id, text="Sedang memproses pesanmu...")
     await context.bot.send_message(chat_id=update.effective_chat.id, text=response)
-
-async def log_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    user_message = update.message.text
     user_id = update.effective_user.id
     logging.info(f"Pesan dari pengguna dengan ID {user_id}: {user_message}")
+
+# async def log_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    # user_message = update.message.text
 
 if __name__ == '__main__':
     application = Application.builder().token(TOKEN).build()
