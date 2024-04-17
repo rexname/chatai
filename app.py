@@ -1,5 +1,6 @@
 import requests , os
 from dotenv import load_dotenv
+from chat_history_utils import save_chat_to_history
 
 def load_chat_history():
     try:
@@ -8,16 +9,6 @@ def load_chat_history():
     except FileNotFoundError:
         chat_history = []
     return chat_history
-
-def save_chat_to_history(chat, response):
-    with open('chat_history.txt', 'a') as file:
-        # Format untuk chat pengguna
-        user_format = f"User:\n{chat}\n"
-        # Format untuk respons AI
-        ai_format = f"AI:\n{response}\n"
-        
-        # Menulis kedua format ke dalam file
-        file.write(user_format + ai_format)
 
 def chai(chat):
     chat_history = load_chat_history()
@@ -41,7 +32,7 @@ def chai(chat):
 
     # Menyimpan chat baru ke file dengan respons yang diterima
     return data['response']
-    save_chat_to_history(chat, data['response'])  # Memperbaiki pemanggilan fungsi ini
+    # save_chat_to_history(chat, data['response'])  # Memperbaiki pemanggilan fungsi ini
     
     # Mencetak masing-masing bagian secara terpisah
 
